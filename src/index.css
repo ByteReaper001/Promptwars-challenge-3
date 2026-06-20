@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;700;900&family=Fira+Code:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-forest-green-50: #f0fdf4;
+  --color-forest-green-100: #dcfce7;
+  --color-forest-green-200: #bbf7d0;
+  --color-forest-green-300: #86efac;
+  --color-forest-green-400: #4ade80;
+  --color-forest-green-500: #3a5a40;
+  --color-forest-green-600: #3a5a40;
+  --color-forest-green-700: #2f4933;
+  --color-forest-green-800: #253a28;
+  --color-forest-green-900: #1a281c;
+  --color-forest-green-950: #0f1811;
+  --color-forest-green-DEFAULT: #3a5a40;
+  
+  --color-earth-beige: #1A1F2E;
+  --color-warm-white: #0F1419;
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Outfit', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.7);
+  --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.9);
+  
+  --radius-2xl: 20px;
+  --radius-xl: 12px;
+}
+
+@utility glass {
+  background: rgba(26, 31, 46, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 217, 255, 0.15);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0F1419;
+  color: #E2E8F0;
+  transition-property: color, background-color;
+  transition-duration: 300ms;
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseBorder {
+  0%, 100% { border-color: rgba(0, 217, 255, 0.3); box-shadow: 0 0 5px rgba(0, 217, 255, 0.1); }
+  50% { border-color: rgba(0, 217, 255, 0.8); box-shadow: 0 0 15px rgba(0, 217, 255, 0.4); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-border {
+  animation: pulseBorder 2.5s infinite;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 217, 255, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 217, 255, 0.4);
+}
+
+/* Range Input Custom Styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #1A1F2E;
+  height: 8px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #00D9FF;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  border: 2px solid #0F1419;
+  margin-top: -6px;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+  transition: transform 100ms, background-color 100ms;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+  background-color: #33E1FF;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(0.95);
+}
+
+/* Firefox support for range input */
+input[type="range"]::-moz-range-track {
+  background-color: #1A1F2E;
+  height: 8px;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  background-color: #00D9FF;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  border: 2px solid #0F1419;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+  transition: transform 100ms;
+}
+
