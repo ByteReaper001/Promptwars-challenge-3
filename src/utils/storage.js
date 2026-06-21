@@ -40,7 +40,7 @@ export const initializeDefaultData = (force = false) => {
   try {
     if (force || !localStorage.getItem('user_profile')) {
     const profile = {
-      userId: 'user_uuid_carbonpath',
+      userId: 'user_uuid_carbonlytics',
       email: 'john.doe@example.com',
       name: 'John Doe',
       createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days ago

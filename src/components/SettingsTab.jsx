@@ -45,7 +45,7 @@ export default function SettingsTab({ profile, onSaveProfile, onResetData }) {
   };
 
   const handleResetClick = () => {
-    if (window.confirm('Are you sure you want to reset all of your CarbonPath data? This will clear all logged actions, streak history, goals, and custom calculator values.')) {
+    if (window.confirm('Are you sure you want to reset all of your Carbonlytics data? This will clear all logged actions, streak history, goals, and custom calculator values.')) {
       onResetData();
       alert('Data reset successfully. Scaffolding defaults.');
     }

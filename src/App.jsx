@@ -110,7 +110,7 @@ export default function App() {
         badgeId: 'first_action',
         name: 'First Micro-habit Logged',
         icon: '✨',
-        description: 'Began carbon logging on CarbonVerse',
+        description: 'Began carbon logging on Carbonlytics',
         tier: 'NOVICE',
         rarity: 'Common'
       });

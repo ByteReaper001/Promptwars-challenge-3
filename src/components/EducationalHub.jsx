@@ -19,7 +19,7 @@ This is because of carbon conversion coefficients. Environmental protection agen
 2. Electrical grid emissions depend heavily on regional fuel sources. In the USA, the grid average is around 0.385 kg CO₂ per kWh produced.
 3. Natural gas heating releases carbon at about 0.185 kg CO₂ per equivalent kWh of thermal energy.
 
-By keeping track of these coefficients, CarbonPath helps you trace and offset actual emissions output in real-time.`
+By keeping track of these coefficients, Carbonlytics helps you trace and offset actual emissions output in real-time.`
     },
     {
       id: 'flying_footprint',

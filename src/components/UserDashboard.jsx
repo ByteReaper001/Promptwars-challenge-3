@@ -112,7 +112,7 @@ export default function UserDashboard({
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `carbonverse_history_${profile.name || 'user'}.csv`);
+    link.setAttribute("download", `carbonlytics_history_${profile.name || 'user'}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -150,7 +150,7 @@ export default function UserDashboard({
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h2 className="text-3xl font-extrabold text-white font-display flex items-center gap-2">
-            Welcome to CarbonVerse, {profile.name || 'Explorer'}!
+            Welcome to Carbonlytics, {profile.name || 'Explorer'}!
           </h2>
           <p className="text-sm text-stone-400 mt-1">
             Map emissions into real-time waveforms. Log habits and build progression private-by-default.

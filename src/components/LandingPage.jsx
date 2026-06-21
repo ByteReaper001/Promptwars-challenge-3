@@ -52,7 +52,7 @@ export default function LandingPage({ onStartCalculator, onExploreDemo }) {
         <div className="lg:col-span-7 space-y-6 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-800/30 text-[#00D9FF] text-sm font-semibold animate-pulse">
             <Sparkles className="w-4 h-4" />
-            <span>Introducing CarbonVerse v2.0</span>
+            <span>Introducing Carbonlytics v2.0</span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-white font-display">
             Understand Your Impact. <br />
@@ -199,7 +199,7 @@ export default function LandingPage({ onStartCalculator, onExploreDemo }) {
       {/* 3. HOW IT WORKS SECTION */}
       <section className="space-y-12">
         <div className="text-center max-w-xl mx-auto space-y-2">
-          <h2 className="text-3xl font-extrabold text-stone-900 dark:text-white">How CarbonPath Works</h2>
+          <h2 className="text-3xl font-extrabold text-stone-900 dark:text-white">How Carbonlytics Works</h2>
           <p className="text-stone-600 dark:text-zinc-400">Take charge of your personal environmental impact in three simple steps.</p>
         </div>
 
