@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  Globe, LayoutDashboard, Calculator, Award, BookOpen, Settings, 
+import {
+  Globe, LayoutDashboard, Calculator, Award, BookOpen, Settings,
   Moon, Sun, Plus, X, Check, Flame, Trophy, Menu, Sparkles, AlertCircle, Share2
 } from 'lucide-react';
 import LandingPage from './components/LandingPage';
@@ -30,7 +30,7 @@ export default function App() {
 
   // View tabs: 'landing' | 'calculator' | 'results' | 'dashboard' | 'challenges' | 'achievements' | 'education' | 'settings'
   const [activeTab, setActiveTab] = useState('landing');
-  
+
   // Confetti trigger
   const [showConfetti, setShowConfetti] = useState(false);
   const triggerConfetti = () => {
@@ -68,7 +68,7 @@ export default function App() {
   const handleCalculate = (answers) => {
     const calculated = calculateEmissions(answers);
     const insights = generateInsights(answers, calculated);
-    
+
     const nextScore = {
       scoreId: `score_${Date.now()}`,
       calculationDate: new Date().toISOString(),
@@ -162,7 +162,7 @@ export default function App() {
     const nextAchievements = [newUnlock, ...achievements];
     saveStorageData('achievements', nextAchievements);
     setAchievements(nextAchievements);
-    
+
     // Automatically trigger share overlay for milestones
     setActiveShareMilestone(newUnlock);
     triggerConfetti();
@@ -204,7 +204,7 @@ export default function App() {
           rarity: 'Legendary'
         });
       }
-      
+
       return nextStreakData;
     }
     return streak;
@@ -278,16 +278,11 @@ export default function App() {
     <div className="min-h-screen bg-[#0F1419] text-[#E2E8F0] flex flex-col pb-16 md:pb-0">
       {showConfetti && <Confetti />}
 
-      {/* HEADER NAVIGATION */}
       <header className="sticky top-0 z-40 bg-[#1A1F2E]/90 backdrop-blur-md border-b border-zinc-800/60">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          
-          <button 
-            onClick={() => setActiveTab('landing')}
-            className="flex items-center gap-2 text-white font-black text-xl font-display select-none"
-          >
+          <button onClick={() => setActiveTab('landing')} className="flex items-center gap-2 text-white font-black text-xl font-display select-none">
             <Globe className="w-6 h-6 text-[#00D9FF] animate-[spin_20s_linear_infinite]" />
-            <span>Carbon<span className="text-[#00D9FF]">Verse</span></span>
+            <span>Carbon<span className="text-[#00D9FF]">lytics</span></span>
           </button>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -302,18 +297,12 @@ export default function App() {
             ].map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id || (tab.id === 'calculator' && activeTab === 'results');
+
               return (
                 <button
                   key={tab.id}
-                  onClick={() => {
-                    setActiveTab(tab.id);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${
-                    isActive 
-                      ? 'bg-cyan-950/40 text-[#00D9FF] border border-cyan-800/30' 
-                      : 'text-stone-400 hover:bg-zinc-800/40 hover:text-white'
-                  }`}
+                  onClick={() => { setActiveTab(tab.id); setMobileMenuOpen(false); }}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all ${isActive ? 'bg-cyan-950/40 text-[#00D9FF] border border-cyan-800/30' : 'text-stone-400 hover:bg-zinc-800/40 hover:text-white'}`}
                 >
                   <Icon className="w-4 h-4" />
                   <span>{tab.label}</span>
@@ -322,44 +311,37 @@ export default function App() {
             })}
           </nav>
 
-          <div className="flex md:hidden items-center gap-2">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-stone-400 hover:text-white rounded-lg hover:bg-zinc-800"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
-          </div>
+          <button
+            type="button"
+            className="md:hidden p-2 rounded-xl text-stone-300 hover:bg-zinc-800/60 hover:text-white"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            aria-label="Toggle navigation menu"
+          >
+            <Menu className="w-5 h-5" />
+          </button>
         </div>
 
-        {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-b border-zinc-800 bg-[#0F1419] py-3 px-4 flex flex-col gap-1.5 text-left">
+          <div className="md:hidden border-t border-zinc-800 bg-[#0F1419] py-3 px-4 flex flex-col gap-1.5 text-left">
             {[
               { id: 'landing', label: 'Home', icon: Globe },
               { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-              { id: 'calculator', label: 'Carbon Calculator', icon: Calculator },
-              { id: 'challenges', label: 'Eco Challenges', icon: Trophy },
-              { id: 'achievements', label: 'Achievements Grid', icon: Award },
-              { id: 'education', label: 'Articles & Roadmap', icon: BookOpen },
-              { id: 'settings', label: 'Profile Settings', icon: Settings }
+              { id: 'calculator', label: 'Calculator', icon: Calculator },
+              { id: 'challenges', label: 'Challenges', icon: Trophy },
+              { id: 'achievements', label: 'Achievements', icon: Award },
+              { id: 'education', label: 'Education', icon: BookOpen },
+              { id: 'settings', label: 'Settings', icon: Settings }
             ].map((tab) => {
               const Icon = tab.icon;
-              const isActive = activeTab === tab.id;
+              const isActive = activeTab === tab.id || (tab.id === 'calculator' && activeTab === 'results');
+
               return (
                 <button
                   key={tab.id}
-                  onClick={() => {
-                    setActiveTab(tab.id);
-                    setMobileMenuOpen(false);
-                  }}
-                  className={`w-full px-4 py-3 rounded-2xl text-sm font-bold flex items-center gap-3 transition-all ${
-                    isActive 
-                      ? 'bg-[#00D9FF] text-zinc-950' 
-                      : 'text-stone-400 hover:bg-zinc-800'
-                  }`}
+                  onClick={() => { setActiveTab(tab.id); setMobileMenuOpen(false); }}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition-all ${isActive ? 'bg-cyan-950/40 text-[#00D9FF] border border-cyan-800/30' : 'text-stone-400 hover:bg-zinc-800/40 hover:text-white'}`}
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-4 h-4" />
                   <span>{tab.label}</span>
                 </button>
               );
@@ -368,24 +350,23 @@ export default function App() {
         )}
       </header>
 
-      {/* MAIN CONTENT AREA */}
       <main className="flex-1">
         {activeTab === 'landing' && (
-          <LandingPage 
+          <LandingPage
             onStartCalculator={() => setActiveTab('calculator')}
             onExploreDemo={() => setActiveTab('dashboard')}
           />
         )}
-        
+
         {activeTab === 'calculator' && (
-          <CarbonCalculator 
+          <CarbonCalculator
             onCalculate={handleCalculate}
             initialAnswers={carbonScore?.answers}
           />
         )}
 
         {activeTab === 'results' && carbonScore && (
-          <ResultsPage 
+          <ResultsPage
             carbonScore={carbonScore}
             onSaveAction={handleAddLog}
             onNavigateToDashboard={(targetTab) => setActiveTab(targetTab)}
@@ -393,7 +374,7 @@ export default function App() {
         )}
 
         {activeTab === 'dashboard' && (
-          <UserDashboard 
+          <UserDashboard
             profile={profile}
             carbonScore={carbonScore}
             streak={streak}
@@ -411,7 +392,7 @@ export default function App() {
         )}
 
         {activeTab === 'challenges' && (
-          <ChallengesGrid 
+          <ChallengesGrid
             challenges={challenges}
             onLogProgress={handleLogChallengeProgress}
             onTriggerConfetti={triggerConfetti}
@@ -420,17 +401,13 @@ export default function App() {
         )}
 
         {activeTab === 'achievements' && (
-          <AchievementsGrid 
-            achievements={achievements}
-          />
+          <AchievementsGrid achievements={achievements} />
         )}
 
-        {activeTab === 'education' && (
-          <EducationalHub />
-        )}
+        {activeTab === 'education' && <EducationalHub />}
 
         {activeTab === 'settings' && (
-          <SettingsTab 
+          <SettingsTab
             profile={profile}
             onSaveProfile={handleSaveProfile}
             onResetData={handleResetData}
@@ -438,7 +415,6 @@ export default function App() {
         )}
       </main>
 
-      {/* MOBILE BOTTOM NAVIGATION BAR */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#1A1F2E]/95 border-t border-zinc-800/80 h-16 flex items-center justify-around px-2 backdrop-blur-md">
         {[
           { id: 'dashboard', label: 'Dash', icon: LayoutDashboard },
@@ -449,15 +425,12 @@ export default function App() {
         ].map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
+
           return (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-col items-center justify-center gap-0.5 w-12 h-12 rounded-xl transition-all ${
-                isActive 
-                  ? 'text-[#00D9FF] font-bold' 
-                  : 'text-stone-500'
-              }`}
+              className={`flex flex-col items-center justify-center gap-0.5 w-12 h-12 rounded-xl transition-all ${isActive ? 'text-[#00D9FF] font-bold' : 'text-stone-500'}`}
             >
               <Icon className="w-5 h-5" />
               <span className="text-[10px]">{tab.label}</span>
@@ -466,7 +439,6 @@ export default function App() {
         })}
       </div>
 
-      {/* FLOATING ACTION BUTTON */}
       <div className="fixed bottom-20 right-4 md:bottom-6 md:right-6 z-40">
         <button
           onClick={() => setQuickCheckOpen(true)}
@@ -477,11 +449,9 @@ export default function App() {
         </button>
       </div>
 
-      {/* QUICK CARBON CHECK MODAL */}
       {quickCheckOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
           <div className="bg-[#1A1F2E] border border-zinc-800 rounded-3xl p-6 w-full max-w-sm shadow-heavy text-left relative animate-scale-up space-y-6">
-            
             <button
               onClick={() => setQuickCheckOpen(false)}
               disabled={quickCheckSuccess}
@@ -506,12 +476,12 @@ export default function App() {
                       <span className="font-bold text-stone-300">Miles driven today?</span>
                       <span className="font-extrabold text-[#00D9FF]">{quickForm.milesToday} miles</span>
                     </div>
-                    <input 
+                    <input
                       type="range"
                       min="0"
                       max="50"
                       value={quickForm.milesToday}
-                      onChange={(e) => setQuickForm(prev => ({ ...prev, milesToday: Number(e.target.value) }))}
+                      onChange={(e) => setQuickForm((prev) => ({ ...prev, milesToday: Number(e.target.value) }))}
                       className="w-full"
                     />
                   </div>
@@ -520,14 +490,10 @@ export default function App() {
                     <span className="text-xs font-bold text-stone-300">Used transit/bus today?</span>
                     <button
                       type="button"
-                      onClick={() => setQuickForm(prev => ({ ...prev, transitToday: !prev.transitToday }))}
-                      className={`w-12 h-6 flex items-center rounded-full p-0.5 transition-colors duration-200 ${
-                        quickForm.transitToday ? 'bg-[#00D9FF]' : 'bg-zinc-800'
-                      }`}
+                      onClick={() => setQuickForm((prev) => ({ ...prev, transitToday: !prev.transitToday }))}
+                      className={`w-12 h-6 flex items-center rounded-full p-0.5 transition-colors duration-200 ${quickForm.transitToday ? 'bg-[#00D9FF]' : 'bg-zinc-800'}`}
                     >
-                      <div className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-200 ${
-                        quickForm.transitToday ? 'translate-x-6' : 'translate-x-0'
-                      }`} />
+                      <div className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-200 ${quickForm.transitToday ? 'translate-x-6' : 'translate-x-0'}`} />
                     </button>
                   </div>
 
@@ -539,16 +505,12 @@ export default function App() {
                         { val: 'vegetarian', label: '🥬 Vegetarian' },
                         { val: 'mixed', label: '🍗 Mixed' },
                         { val: 'meatHeavy', label: '🥩 Heavy Meat' }
-                      ].map(d => (
+                      ].map((d) => (
                         <button
                           key={d.val}
                           type="button"
-                          onClick={() => setQuickForm(prev => ({ ...prev, dietToday: d.val }))}
-                          className={`py-2 rounded-xl text-xs font-bold border transition-all ${
-                            quickForm.dietToday === d.val
-                              ? 'border-[#00D9FF] bg-cyan-950/20 text-[#00D9FF]'
-                              : 'border-zinc-800 bg-transparent text-stone-400 hover:border-zinc-700'
-                          }`}
+                          onClick={() => setQuickForm((prev) => ({ ...prev, dietToday: d.val }))}
+                          className={`py-2 rounded-xl text-xs font-bold border transition-all ${quickForm.dietToday === d.val ? 'border-[#00D9FF] bg-cyan-950/20 text-[#00D9FF]' : 'border-zinc-800 bg-transparent text-stone-400 hover:border-zinc-700'}`}
                         >
                           {d.label}
                         </button>
@@ -576,12 +538,10 @@ export default function App() {
                 </div>
               </div>
             )}
-
           </div>
         </div>
       )}
 
-      {/* SHAREABLE MILESTONE CARD OVERLAY */}
       {activeShareMilestone && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fade-in">
           <div className="bg-[#1A1F2E] border border-[rgba(0,217,255,0.3)] rounded-3xl p-6 w-full max-w-sm shadow-heavy text-center relative animate-scale-up space-y-6">
@@ -591,7 +551,7 @@ export default function App() {
             >
               <X className="w-5 h-5" />
             </button>
-            
+
             <div className="space-y-2">
               <span className="text-[10px] bg-cyan-950 text-cyan-400 border border-cyan-850 px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider">
                 Shareable Achievement Card
@@ -606,13 +566,13 @@ export default function App() {
                 <p className="text-xs text-stone-400 mt-1">{activeShareMilestone.description}</p>
               </div>
               <div className="text-[10px] text-cyan-400 font-mono font-bold tracking-wider">
-                CARBONVERSE COMMUNITY
+                CARBONLYTICS COMMUNITY
               </div>
             </div>
 
             <button
               onClick={() => {
-                alert("Achievement card link copied to clipboard (Simulated)!");
+                alert('Achievement card link copied to clipboard (Simulated)!');
                 setActiveShareMilestone(null);
               }}
               className="w-full py-3 bg-[#00D9FF] hover:bg-[#33E1FF] text-zinc-950 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-subtle"
@@ -623,7 +583,6 @@ export default function App() {
           </div>
         </div>
       )}
-
     </div>
   );
 }
